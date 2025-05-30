@@ -38,7 +38,7 @@ title: Informe GSP823
 <div class="section">
     <h2>5️⃣ Consultas SQL y gráficos</h2>
 
-    <h3>🔹 Consulta 1: Cantidad de avistamientos por forma (Top 5)</h3>
+    <h3>🔹 Consulta 1: Cantidad de avistamientos de ovnis por estado dentro de Estados Unidos</h3>
     <div class="code-block">
         SELECT shape, COUNT(*) AS cantidad<br>
         FROM `ovni.avistamientos`<br>
@@ -46,7 +46,7 @@ title: Informe GSP823
         ORDER BY cantidad DESC<br>
         LIMIT 5;
     </div>
-    <img src="images/grafico-formas.png" alt="Gráfico de torta: Formas más vistas">
+    <img src="{{ site.baseurl }}/assets/img/ovnisporestado.png" alt="Gráfico de torta: Formas más vistas">
 
     <h3>🔹 Consulta 2: Cantidad de avistamientos por año</h3>
     <div class="code-block">
