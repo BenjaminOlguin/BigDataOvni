@@ -40,29 +40,29 @@ title: Informe GSP823
 
     <h3>🔹 Consulta 1: Cantidad de avistamientos de ovnis por estado dentro de Estados Unidos</h3>
     <div class="code-block">
+        SELECT estado, COUNT(*) AS cantidad<br>
+        FROM `ovni.avistamientos`<br>
+        WHERE pais = 'us'<br>
+        GROUP BY estado<br>
+        ORDER BY cantidad DESC;
+    </div>
+    <img src="{{ site.baseurl }}/assets/img/avistamientosporestado.png"  alt="Gráfico de mapa: Avistamientos por estado en EE.UU.">
+
+    <h3>🔹 Consulta 2: 5 formas de ovnis más vistas</h3>
+    <div class="code-block">
         SELECT shape, COUNT(*) AS cantidad<br>
         FROM `ovni.avistamientos`<br>
         GROUP BY shape<br>
         ORDER BY cantidad DESC<br>
         LIMIT 5;
     </div>
-    <img src="{{ site.baseurl }}/assets/img/avistamientosporestado.png"  alt="Gráfico de mapa: Avistamientos por estado en EE.UU.">
-
-    <h3>🔹 Consulta 2: 5 formas de ovnis más vistas</h3>
-    <div class="code-block">
-        SELECT EXTRACT(YEAR FROM fecha) AS año, COUNT(*) AS cantidad<br>
-        FROM `ovni.avistamientos`<br>
-        GROUP BY año<br>
-        ORDER BY cantidad DESC;
-    </div>
     <img src="{{ site.baseurl }}/assets/img/formasdeovnis.png" alt="Gráfico de torta: Formas más vistas">
 
     <h3>🔹 Consulta 3: Años con más avistamientos</h3>
     <div class="code-block">
-        SELECT estado, COUNT(*) AS cantidad<br>
+        SELECT EXTRACT(YEAR FROM fecha) AS año, COUNT(*) AS cantidad<br>
         FROM `ovni.avistamientos`<br>
-        WHERE pais = 'us'<br>
-        GROUP BY estado<br>
+        GROUP BY año<br>
         ORDER BY cantidad DESC;
     </div>
     <img src="{{ site.baseurl }}/assets/img/añosavistamientos.png" alt="Gráfico de barras: Avistamientos por año">
