@@ -1,1 +1,65 @@
+---
+layout: default
+title: Informe GSP823
+---
 
+
+<h1>{{ page.title }}</h1>
+<p>Alumnos: Benjamín Olguín - Martín Quilodrán</p>
+
+<div class="section">
+    <h2>1️⃣ Cargar archivo .csv a Cloud Storage</h2>
+    <p>Se creó el bucket llamado <strong>nombre-alumno</strong> y se cargó el archivo CSV correspondiente.</p>
+    <img src="images/carga-csv.png" alt="Evidencia de carga CSV a Cloud Storage">
+</div>
+
+<div class="section">
+    <h2>2️⃣ Crear Dataset “ovni” en BigQuery</h2>
+    <p>Se creó el dataset llamado <strong>ovni</strong> en BigQuery para almacenar los datos preparados.</p>
+    <img src="images/dataset-ovni.png" alt="Evidencia de creación del dataset ovni">
+</div>
+
+<div class="section">
+    <h2>3️⃣ Preparación del archivo con DataPrep</h2>
+    <p>Se usó DataPrep para limpiar los datos, verificando nulos y datos incorrectos.</p>
+    <img src="images/dataprep.png" alt="Evidencia del uso de DataPrep">
+</div>
+
+<div class="section">
+    <h2>4️⃣ Carga en la tabla “avistamientos”</h2>
+    <p>Los datos limpios fueron cargados en la tabla <strong>avistamientos</strong> dentro del dataset <strong>ovni</strong>.</p>
+    <img src="images/carga-avistamientos.png" alt="Evidencia de carga en tabla avistamientos">
+</div>
+
+<div class="section">
+    <h2>5️⃣ Consultas SQL y gráficos</h2>
+
+    <h3>🔹 Consulta 1: Cantidad de avistamientos por forma (Top 5)</h3>
+    <div class="code-block">
+        SELECT shape, COUNT(*) AS cantidad<br>
+        FROM `ovni.avistamientos`<br>
+        GROUP BY shape<br>
+        ORDER BY cantidad DESC<br>
+        LIMIT 5;
+    </div>
+    <img src="images/grafico-formas.png" alt="Gráfico de torta: Formas más vistas">
+
+    <h3>🔹 Consulta 2: Cantidad de avistamientos por año</h3>
+    <div class="code-block">
+        SELECT EXTRACT(YEAR FROM fecha) AS año, COUNT(*) AS cantidad<br>
+        FROM `ovni.avistamientos`<br>
+        GROUP BY año<br>
+        ORDER BY cantidad DESC;
+    </div>
+    <img src="images/grafico-anios.png" alt="Gráfico de barras: Avistamientos por año">
+
+    <h3>🔹 Consulta 3: Cantidad de avistamientos por estado (USA)</h3>
+    <div class="code-block">
+        SELECT estado, COUNT(*) AS cantidad<br>
+        FROM `ovni.avistamientos`<br>
+        WHERE pais = 'us'<br>
+        GROUP BY estado<br>
+        ORDER BY cantidad DESC;
+    </div>
+    <img src="images/grafico-mapa.png" alt="Gráfico de mapa: Avistamientos por estado en EE.UU.">
+</div>
